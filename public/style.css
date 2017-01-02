@@ -1,0 +1,37 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+  font-family: monospace;
+}
+.input-area {
+  height: 30vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  color: #FFF;
+  text-align: center;
+  height: 20vh;
+}
+
+.log {
+  background-color: #222;
+  height: 50vh;
+  color: #FEFEFE;
+  overflow-y: scroll;
+  padding: 0 0 0 10px;
+}
+
+.value {
+  font-size: 60px;
+}
+.label {
+  font-size: 30px;
+}

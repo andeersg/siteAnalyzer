@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <form class="input-area" action="">
+      <input id="m" autocomplete="off" /><button id="getStarted">Crawl</button>
+    </form>
+
+    <section class="stats">
+      <div class="stats__element pages">
+        <div class="value">0</div>
+        <div class="label">Pages</div>
+      </div>
+      <div class="stats__element 404">
+        <div class="value">0</div>
+        <div class="label">404</div>
+      </div>
+    </section>
+    <section id="log" class="log"></section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      var logEl = document.getElementById('log');
+      var pageStat = document.querySelector('.pages .value');
+      var pages = 0;
+
+      $('#getStarted').click(function(e) {
+        e.preventDefault();
+        var url = $('#m').val();
+        socket.emit('crawlInit', url);
+      });
+
+      socket.on('log', function(msg){
+        logEl.innerHTML = '<p>' + msg + '</p>' + logEl.innerHTML;
+      });
+      socket.on('pages', function() {
+        pages++;
+        pageStat.innerHTML = pages;
+      });
+    </script>
+  </body>
+</html>
